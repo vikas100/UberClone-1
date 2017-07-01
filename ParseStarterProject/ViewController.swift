@@ -50,10 +50,20 @@ class ViewController: UIViewController {
                         self.displayAlert(title: "SignUp Failed", message: displayofErrorMessage)
                     } else {
                         print("Sign Up SuccessFul")
+                        if let isDriver = PFUser.current()? ["isDriver"] as? Bool {
+                            if isDriver {
+                                
+                            } else {
+                                self.performSegue(withIdentifier: "shhowRiderVC", sender: self)
+                            }
+                            
+                        }
+                        
                     }
                 })
+                
             } else {
-                PFUser.logInWithUsername(inBackground: txtUserName.text!, password: txtPassword.text!, block: { (user,error) in
+                    PFUser.logInWithUsername(inBackground: txtUserName.text!, password: txtPassword.text!, block: { (user,error) in
                  
                     if let error = error {
                         
@@ -65,7 +75,17 @@ class ViewController: UIViewController {
                         self.displayAlert(title: "SignUp Failed", message: displayofErrorMessage)
                     } else {
                         print("Log In SuccessFul")
+                        
+                        if let isDriver = PFUser.current()? ["isDriver"] as? Bool {
+                            if isDriver {
+                                
+                            } else {
+                                self.performSegue(withIdentifier: "shhowRiderVC", sender: self)
+                            }
+                            
+                        }
                     }
+                        
                     
                 })
             }
@@ -74,18 +94,60 @@ class ViewController: UIViewController {
     
     @IBOutlet var signupOrLoginButton: UIButton!
     @IBOutlet var signupSwitchButton: UIButton!
+    @IBOutlet var userSignupSwitch: UISwitch!
+    @IBOutlet var lblRider: UILabel!
+    @IBOutlet var lblDriver: UILabel!
     
     // button action switch to LogIn
     @IBAction func btnswitchSignUpMode(_ sender: Any) {
+        
         if signUpMode {
+        
             signupOrLoginButton.setTitle("Login", for: [])
+            
             signupSwitchButton.setTitle("Switch To Sign Up", for: [])
+            
             signUpMode =  false
+            
+            userSignupSwitch.isHidden = true
+            
+            lblRider.isHidden = true
+            
+            lblDriver.isHidden = true
+
+       
         } else {
+        
             signupOrLoginButton.setTitle("Sign Up", for: [])
+            
             signupSwitchButton.setTitle("Switch To Log In", for: [])
+            
             signUpMode =  true
+        
+            userSignupSwitch.isHidden = false
+            
+            lblRider.isHidden = false
+            
+            lblDriver.isHidden = false
         }
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if let isDriver = PFUser.current()? ["isDriver"] as? Bool {
+            if isDriver {
+        
+                
+            } else {
+                
+                self.performSegue(withIdentifier: "shhowRiderVC", sender: self)
+           
+            }
+            
+        }
+    
+    
     }
     
     
