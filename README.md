@@ -11,3 +11,17 @@ Request a Near by location Taxi Booking using Apple Map.
 
 Amazon Web Service + Parse Server (Backend).
 Apple Map(For location based)
+
+# How to Use it :
+You have to install this app in two device for Rider request and Driver Accept it.
+You have to Signup for New Register both Driver as well as Rider.
+
+# Rider Funtion:
+
+  *) Based on User Location, Rider will give request a taxi.
+  *) Accurate Current Location on Apple Map .
+  
+# Driver Function:
+
+   *) Driver Will Accept Rider Request for Ride.
+   *) Driver will get Rider Location.
