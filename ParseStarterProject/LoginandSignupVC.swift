@@ -1,18 +1,16 @@
-/**
-* Copyright (c) 2015-present, Parse, LLC.
-* All rights reserved.
-*
-* This source code is licensed under the BSD-style license found in the
-* LICENSE file in the root directory of this source tree. An additional grant
-* of patent rights can be found in the PATENTS file in the same directory.
-*/
+//
+//  LoginandSignupVC.swift
+//  ParseStarterProject-Swift
+//
+//  Created by Baskaran Thanigaimani (Digital) on 07/07/17.
+//  Copyright © 2017 Parse. All rights reserved.
+//
 
 import UIKit
 import Parse
 
-class ViewController: UIViewController {
-    
-    
+class LoginandSignupVC: UIViewController {
+
     @IBOutlet var userSignupSwitch: UISwitch!
     
     var signUpMode = true
@@ -26,12 +24,18 @@ class ViewController: UIViewController {
         self.present(alertcontroller, animated: true, completion: nil)
         
     }
-
+    
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     
     @IBOutlet var signupOrLoginButton: UIButton!
     @IBAction func signupOrLogin(_ sender: AnyObject) {
+        
+        if ConnectionCheck.isConnectedToNetwork(){
+            print("Connected")
+        } else{
+            displayAlert(title: "No Internet Connection", message: "Check Your Internet Connection")
+        }
         
         if usernameTextField.text == "" || passwordTextField.text == "" {
             
@@ -132,7 +136,7 @@ class ViewController: UIViewController {
                             
                             
                         }
-
+                        
                         
                     }
                     
@@ -143,7 +147,7 @@ class ViewController: UIViewController {
             
         }
         
-
+        
         
     }
     @IBOutlet var signupSwitchButton: UIButton!
@@ -200,6 +204,7 @@ class ViewController: UIViewController {
             }
         }
     }
+    
     
 
 }
