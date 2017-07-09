@@ -73,6 +73,13 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             riderRequestActive = true
             
             self.callAnUberButton.setTitle("Cancel Uber", for: [])
+            
+            if ConnectionCheck.isConnectedToNetwork(){
+                // print("Connected")
+            } else{
+                displayAlert(title: "No Internet Connection", message: "Check Your Internet Connection")
+            }
+
         
             let riderRequest = PFObject(className: "RiderRequest")
         
