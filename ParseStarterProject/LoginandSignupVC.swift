@@ -32,7 +32,7 @@ class LoginandSignupVC: UIViewController {
     @IBAction func signupOrLogin(_ sender: AnyObject) {
         
         if ConnectionCheck.isConnectedToNetwork(){
-            print("Connected")
+            // print("Connected")
         } else{
             displayAlert(title: "No Internet Connection", message: "Check Your Internet Connection")
         }
@@ -72,7 +72,7 @@ class LoginandSignupVC: UIViewController {
                         
                     } else {
                         
-                        print("Sign Up Successful")
+                        // print("Sign Up Successful")
                         
                         if let isDriver = PFUser.current()?["isDriver"] as? Bool {
                             
@@ -118,7 +118,7 @@ class LoginandSignupVC: UIViewController {
                         
                     } else {
                         
-                        print("Log In Successful")
+                       // print("Log In Successful")
                         
                         if let isDriver = PFUser.current()?["isDriver"] as? Bool {
                             

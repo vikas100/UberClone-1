@@ -33,8 +33,6 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
         } else if segue.identifier == "showRiderLocationViewController" {
             
             if let destination = segue.destination as? RiderLocationViewController { // segue.destinationViewController is now segue.destination
-
-                
                 if let row = tableView.indexPathForSelectedRow?.row {
                 
                     destination.requestLocation = requestLocations[row]
@@ -59,6 +57,8 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
     }
+    
+  
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         

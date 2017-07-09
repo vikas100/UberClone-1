@@ -30,8 +30,16 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
+    @IBOutlet var callAnUberButton: UIButton!
     @IBOutlet var map: MKMapView!
+    
     @IBAction func callAnUber(_ sender: AnyObject) {
+        
+        if ConnectionCheck.isConnectedToNetwork(){
+            // print("Connected")
+        } else{
+            displayAlert(title: "No Internet Connection", message: "Not Able to Make Call an Uber")
+        }
         
         if riderRequestActive {
             
@@ -75,10 +83,7 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             riderRequest.saveInBackground(block: { (success, error) in
                 
                 if success {
-                    
-                    print("Called an uber")
-                    
-                    
+                   // print("Called an uber")
                 } else {
                     
                     self.callAnUberButton.setTitle("Call An Uber", for: [])
@@ -101,8 +106,6 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         }
         
     }
-    @IBOutlet var callAnUberButton: UIButton!
-    
     
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -142,18 +145,12 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
                     self.riderRequestActive = true
                 
                     self.callAnUberButton.setTitle("Cancel Uber", for: [])
-                    
                 }
- 
             }
-            
             self.callAnUberButton.isHidden = false
-            
-            
         })
-
-        
     }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
